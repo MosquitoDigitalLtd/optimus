@@ -5,6 +5,7 @@ namespace Appitized\Optimus\Requests;
 use App\Http\Requests\Request;
 use Appitized\Optimus\Exceptions\ApiValidationException;
 use Illuminate\Http\Exception\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class ApiRequest extends Request
 {
