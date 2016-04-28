@@ -25,16 +25,16 @@ class Optimus
         $this->manager = $manager;
     }
 
-    public function withMessage($message)
+    public function withMessage($message, $statusCode = 200)
     {
-        $success = ['status' => 200, 'detail' => $message];
-        return new JsonResponse(['success' => $success], 200);
+        $success = ['status' => $statusCode, 'messages' => [$message]];
+        return new JsonResponse(['success' => $success], $statusCode);
     }
 
-    public function withError($message)
+    public function withError($message, $statusCode = 400)
     {
-        $success = ['status' => 400, 'detail' => $message];
-        return new JsonResponse(['error' => $success], 400);
+        $success = ['status' => $statusCode, 'messages' => [$message]];
+        return new JsonResponse(['error' => $success], $statusCode);
     }
 
     public function withCollection($data, $transfomer = null, $resourceName = null)
@@ -142,13 +142,13 @@ class Optimus
         return $fractalData->$conversionMethod();
     }
 
-    public function toArray()
+    public function toArray($statusCode = 200)
     {
-        return $this->transform('toArray');
+        return Response::make($this->transform('toArray'), $statusCode);
     }
 
-    public function toJson()
+    public function toJson($statusCode = 200)
     {
-        return $this->transform('toJson');
+        return Response::make($this->transform('toJson'), $statusCode);
     }
 }
