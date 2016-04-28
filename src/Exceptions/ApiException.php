@@ -3,14 +3,14 @@
 namespace Appitized\Optimus\Exceptions;
 
 use Illuminate\Http\JsonResponse;
+use Exception;
 
-class ApiException extends \Exception
+class ApiException extends Exception implements OptimusException
 {
 
     public function __construct($message, $code)
     {
         parent::__construct($message, $code);
-
     }
 
     /**
@@ -24,8 +24,8 @@ class ApiException extends \Exception
     {
         $error = [
           'status' => $this->getCode(),
-          'title'  => $this->getShortName(),
-          'detail' => $this->getMessage()
+          'title' => $this->getShortName(),
+          'messages' => [$this->getMessage()],
         ];
 
         return new JsonResponse(['errors' => [$error]], $this->getCode(),

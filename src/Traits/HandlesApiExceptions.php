@@ -4,13 +4,20 @@ namespace Appitized\Optimus\Traits;
 
 use Appitized\Optimus\Exceptions\ApiException;
 use Appitized\Optimus\Exceptions\ApiValidationException;
+use Appitized\Optimus\Exceptions\OptimusException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Exception;
 use ReflectionClass;
 
-trait HandlesApiRequests
+trait HandlesApiExceptions
 {
-    public function renderApiResponse($request, Exception $e)
+
+    public function wasApiExceptionThrown(Exception $e)
+    {
+        return ($e instanceof OptimusException);
+    }
+
+    public function renderApiException($request, Exception $e)
     {
         if ($e instanceof ApiException) {
             if (!$request->wantsJson()) {

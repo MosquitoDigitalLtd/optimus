@@ -6,7 +6,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use ReflectionClass;
 
-class ApiValidationException extends Exception
+class ApiValidationException extends Exception implements OptimusException
 {
 
     protected $errors;
@@ -15,7 +15,6 @@ class ApiValidationException extends Exception
     {
         $this->errors = $errors;
         parent::__construct('Validation failed', $statusCode);
-
     }
 
     /**
@@ -29,8 +28,8 @@ class ApiValidationException extends Exception
     {
         $error = [
           'status' => $this->getStatusCode(),
-          'title'  => 'Validation failed',
-          'details' => $this->getErrors(),
+          'title' => 'Validation failed',
+          'messages' => $this->getErrors(),
         ];
 
         return new JsonResponse(['errors' => [$error]], $this->getCode(),
