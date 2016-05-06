@@ -2,9 +2,9 @@
 
 namespace Appitized\Optimus\Traits;
 
+use Appitized\Optimus\Contracts\OptimusException;
 use Appitized\Optimus\Exceptions\ApiException;
 use Appitized\Optimus\Exceptions\ApiValidationException;
-use Appitized\Optimus\Exceptions\OptimusException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Exception;
 use ReflectionClass;

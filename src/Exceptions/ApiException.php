@@ -2,6 +2,7 @@
 
 namespace Appitized\Optimus\Exceptions;
 
+use Appitized\Optimus\Contracts\OptimusException;
 use Illuminate\Http\JsonResponse;
 use Exception;
 

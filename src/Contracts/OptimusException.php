@@ -1,6 +1,6 @@
 <?php
 
-namespace Appitized\Optimus\Exceptions;
+namespace Appitized\Optimus\Contracts;
 
 interface OptimusException
 {
