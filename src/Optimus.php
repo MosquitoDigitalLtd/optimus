@@ -6,8 +6,8 @@ use Appitized\Optimus\Exceptions\InvalidApiTransformation;
 use Appitized\Optimus\Exceptions\InvalidTransformer;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
 use League\Fractal\Manager;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
