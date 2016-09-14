@@ -2,12 +2,12 @@
 
 namespace Appitized\Optimus\Requests;
 
-use App\Http\Requests\Request;
-use Appitized\Optimus\Exceptions\ApiValidationException;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exception\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+use Appitized\Optimus\Exceptions\ApiValidationException;
 
-class ApiRequest extends Request
+class ApiRequest extends FormRequest
 {
     protected function failedValidation(Validator $validator)
     {
