@@ -131,7 +131,7 @@ class Optimus
         if (!starts_with($name, 'include')) {
             trigger_error('Call to undefined method '.__CLASS__.'::'.$name.'()', E_USER_ERROR);
         }
-        $includeName = lcfirst(substr($name, strlen('include')));
+        $includeName = snake_case(lcfirst(substr($name, strlen('include'))));
 
         return $this->parseIncludes($includeName);
     }
