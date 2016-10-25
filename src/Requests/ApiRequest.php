@@ -9,6 +9,11 @@ use Appitized\Optimus\Exceptions\ApiValidationException;
 
 class ApiRequest extends FormRequest
 {
+    public function onlyWith(array $keys)
+    {
+        return array_reduce($this->only($keys), 'array_merge', array());
+    }
+    
     protected function failedValidation(Validator $validator)
     {
         if ($this->wantsJson()) {
