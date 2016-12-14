@@ -17,6 +17,7 @@ class Optimus
     protected $dataType;
     protected $data;
     protected $transformer;
+    protected $headers = [];
     protected $resourceName;
     protected $includes = [];
     protected $paginator;
@@ -58,6 +59,13 @@ class Optimus
         $this->paginator = $paginator;
 
         return $this->data('collection', $paginator->getCollection(), $transformer);
+    }
+    
+    public function withHeaders($headers)
+    {
+        $this->headers = $headers;
+        
+        return $this;
     }
 
     public function transformWith($transformer)
@@ -145,11 +153,11 @@ class Optimus
 
     public function toArray($statusCode = 200)
     {
-        return Response::make($this->transform('toArray'), $statusCode);
+        return response($this->transform('toArray'), $statusCode)->withHeaders($this->headers);
     }
 
     public function toJson($statusCode = 200)
     {
-        return Response::make($this->transform('toJson'), $statusCode);
+        return response($this->transform('toJson'), $statusCode)->withHeaders($this->headers);
     }
 }
