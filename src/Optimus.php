@@ -41,7 +41,7 @@ class Optimus
     {
         $error = [
             'status' => $statusCode,
-            'message'=> is_array($message)? $message[array_keys($message)[0]] : $message,
+            'message'=> is_array($message)? array_first(array_flatten($message)) : $message,
             'messages' => [$message]
         ];
         return new JsonResponse(['error' => $error], $statusCode);
