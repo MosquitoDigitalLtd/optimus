@@ -29,14 +29,22 @@ class Optimus
 
     public function withMessage($message, $statusCode = 200)
     {
-        $success = ['status' => $statusCode, 'messages' => [$message]];
+        $success = [
+            'status' => $statusCode,
+            'message'=> is_array($message)? $message[array_keys($message)[0]] : $message,
+            'messages' => [$message]
+        ];
         return new JsonResponse(['success' => $success], $statusCode);
     }
 
     public function withError($message, $statusCode = 400)
     {
-        $success = ['status' => $statusCode, 'messages' => [$message]];
-        return new JsonResponse(['error' => $success], $statusCode);
+        $error = [
+            'status' => $statusCode,
+            'message'=> is_array($message)? $message[array_keys($message)[0]] : $message,
+            'messages' => [$message]
+        ];
+        return new JsonResponse(['error' => $error], $statusCode);
     }
 
     public function withCollection($data, $transfomer = null, $resourceName = null)
