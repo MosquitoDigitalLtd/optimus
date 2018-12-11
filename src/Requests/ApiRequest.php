@@ -18,7 +18,7 @@ class ApiRequest extends FormRequest
     {
         if ($this->wantsJson()) {
             throw new ApiValidationException($validator->getMessageBag()
-              ->toArray(), 422);
+              ->toArray(), 400);
         }
 
         throw new HttpResponseException($this->response(
