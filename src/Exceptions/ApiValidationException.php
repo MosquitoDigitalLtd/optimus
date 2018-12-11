@@ -34,7 +34,7 @@ class ApiValidationException extends Exception implements OptimusException
           'messages' => $this->getErrors(),
         ];
 
-        return new JsonResponse(['error' => [$error]], $this->getCode(),
+        return new JsonResponse(['error' => $error], $this->getCode(),
           array_merge($headers, ['Content-Type' => $this->contentType()]));
     }
 
